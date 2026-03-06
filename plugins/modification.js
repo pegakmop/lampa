@@ -7,7 +7,7 @@
 
             if(!Lampa.Storage.get('lampac_initiale','false')) start();
 			
-            window.lampa_settings.torrents_use = false;
+            window.lampa_settings.torrents_use = true;
             window.lampa_settings.demo = false;
             window.lampa_settings.read_only = false;
 			
@@ -62,7 +62,7 @@
         }
         
         
-        Lampa.Storage.set('jackett_url','redapi.cfhttp.top');
+        Lampa.Storage.set('jackett_url','https://sw.ext.io/jac');
         Lampa.Storage.set('jackett_key','1');
         Lampa.Storage.set('parser_torrent_type','jackett');
 		
@@ -76,7 +76,7 @@
         var plugins = Lampa.Plugins.get();
 
         var plugins_add = [
-			{"url": "plugins/kinopoisk.js","status": 1,"name": "KP","author": "lampac"},{"url": "plugins/cub_off.js","status": 1,"name": "cub_off.js","author": "lampac"},{"url": "https://lam.maxvol.pro/tmdbproxy.js","status": 1,"name": "TMDB Proxy","author": "lampac"},{"url": "https://lam.maxvol.pro/online.js","status": 1,"name": "Онлайн","author": "lampac"},{"url": "plugins/sisi.js","status": 1,"name": "Клубничка","author": "lampac"},{"url": "plugins/infuceSave.js","status": 1,"name": "infuceSave","author": "lampac"},{"url": "https://lam.maxvol.pro/startpage.js","status": 1,"name": "start","author": "lampac"}
+			{"url": "plugins/kinopoisk.js","status": 1,"name": "KP","author": "lampac"},{"url": "plugins/cub_off.js","status": 1,"name": "cub_off.js","author": "lampac"},{"url": "https://lam.maxvol.pro/tmdbproxy.js","status": 1,"name": "TMDB Proxy","author": "lampac"},{"url": "https://lam.maxvol.pro/online.js","status": 1,"name": "Онлайн","author": "lampac"},{"url": "plugins/sisi.js","status": 1,"name": "Клубничка","author": "lampac"},{"url": "plugins/infuce.js","status": 1,"name": "infuce","author": "lampac"},{"url": "https://lam.maxvol.pro/startpage.js","status": 1,"name": "start","author": "lampac"}
         ];
 
         var plugins_push = []
