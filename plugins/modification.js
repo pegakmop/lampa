@@ -72,6 +72,9 @@
 		Lampa.Storage.set('shots_in_card','false');
 		Lampa.Storage.set('shots_in_player','false');
 		Lampa.Storage.set('screensaver','false');
+		Lampa.Storage.set('black_style','true');
+		Lampa.Storage.set('advanced_animation','false');
+		Lampa.Storage.set('content_rows_shots_main','false');
 		
         var unic_id = Lampa.Storage.get('lampac_unic_id', '');
 
