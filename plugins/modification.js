@@ -71,6 +71,7 @@
 		Lampa.Storage.set('torrserver_use_link','one');
 		Lampa.Storage.set('shots_in_card','false');
 		Lampa.Storage.set('shots_in_player','false');
+		Lampa.Storage.set('screensaver','false');
 		
         var unic_id = Lampa.Storage.get('lampac_unic_id', '');
 
