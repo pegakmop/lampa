@@ -69,6 +69,8 @@
 		Lampa.Storage.set('torrserver_url_two','http://37.192.106.55:8095');
 		Lampa.Storage.set('parse_in_search','true');
 		Lampa.Storage.set('torrserver_use_link','one');
+		Lampa.Storage.set('shots_in_card','false');
+		Lampa.Storage.set('shots_in_player','false');
 		
         var unic_id = Lampa.Storage.get('lampac_unic_id', '');
 
