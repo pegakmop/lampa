@@ -34,6 +34,7 @@
         Lampa.Storage.set('skazonline2_view', 'false');
         Lampa.Storage.set('parser_use','true');
 		Lampa.Storage.set('parse_in_search','true');
+		Lampa.Storage.set('menu_sort','["Главная","Фильмы","Мультфильмы","Сериалы","Каталог","Фильтр","Релизы","Аниме","Избранное","История","Торренты","Кинопоиск"]');
         	/*Удаляем ненужное из главного меню*/
 
   Lampa.Listener.follow('app', function (e) {
@@ -62,7 +63,7 @@
             Lampa.Storage.set('player_def', true);
         }
         
-        
+        Lampa.Storage.set('menu_sort','["Главная","Фильмы","Мультфильмы","Сериалы","Каталог","Фильтр","Релизы","Аниме","Избранное","История","Торренты","Кинопоиск"]');
         Lampa.Storage.set('jackett_url','https://sw.ext.io/jac');
 		Lampa.Storage.set('jackett_url_two','lam.maxvol.pro');
 		Lampa.Storage.set('parser_use_link','both');
