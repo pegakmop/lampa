@@ -64,17 +64,20 @@
         
         
         Lampa.Storage.set('jackett_url','https://sw.ext.io/jac');
+		Lampa.Storage.set('jackett_url_two','lam.maxvol.pro');
+		Lampa.Storage.set('parser_use_link','both');
         Lampa.Storage.set('jackett_key','1');
         Lampa.Storage.set('parser_torrent_type','jackett');
 		Lampa.Storage.set('torrserver_url','https://ts.maxvol.pro');
 		//Lampa.Storage.set('torrserver_url_two','http://37.192.106.55:8095');
 		Lampa.Storage.set('parse_in_search','true');
 		Lampa.Storage.set('torrserver_use_link','one');
+		Lampa.Storage.set('video_quality_default','2160');
 		Lampa.Storage.set('shots_in_card','false');
 		Lampa.Storage.set('shots_in_player','false');
 		Lampa.Storage.set('screensaver','false');
 		Lampa.Storage.set('black_style','true');
-		Lampa.Storage.set('advanced_animation','false');
+		Lampa.Storage.set('advanced_animation','true');
 		Lampa.Storage.set('content_rows_shots_main','false');
 		
         var unic_id = Lampa.Storage.get('lampac_unic_id', '');
