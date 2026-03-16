@@ -66,7 +66,7 @@
         Lampa.Storage.set('jackett_url','https://sw.ext.io/jac');
         Lampa.Storage.set('jackett_key','1');
         Lampa.Storage.set('parser_torrent_type','jackett');
-		Lampa.Storage.set('torrserver_url','http://ts.maxvol.pro');
+		Lampa.Storage.set('torrserver_url','https://ts.maxvol.pro');
 		//Lampa.Storage.set('torrserver_url_two','http://37.192.106.55:8095');
 		Lampa.Storage.set('parse_in_search','true');
 		Lampa.Storage.set('torrserver_use_link','one');
