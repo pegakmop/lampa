@@ -34,10 +34,6 @@
         Lampa.Storage.set('skazonline2_view', 'false');
         Lampa.Storage.set('parser_use','true');
 		Lampa.Storage.set('parse_in_search','true');
-		Lampa.Storage.set('torrserver_preload', 'true');
-		Lampa.Storage.set('torrserver_savedb', 'true');
-		Lampa.Storage.set('jackett_url','sw.ext.io/jac');
-		Lampa.Storage.set('jackett_key','1');
         	/*Удаляем ненужное из главного меню*/
 
   Lampa.Listener.follow('app', function (e) {
@@ -67,13 +63,13 @@
         }
         
         
-        //Lampa.Storage.set('jackett_url','https://sw.ext.io/jac');
-        //Lampa.Storage.set('jackett_key','1');
+        Lampa.Storage.set('jackett_url','https://sw.ext.io/jac');
+        Lampa.Storage.set('jackett_key','1');
         Lampa.Storage.set('parser_torrent_type','jackett');
-		//Lampa.Storage.set('torrserver_url','http://37.192.106.55:8095');
+		Lampa.Storage.set('torrserver_url','http://ts.maxvol.pro');
 		//Lampa.Storage.set('torrserver_url_two','http://37.192.106.55:8095');
 		Lampa.Storage.set('parse_in_search','true');
-		//Lampa.Storage.set('torrserver_use_link','one');
+		Lampa.Storage.set('torrserver_use_link','one');
 		Lampa.Storage.set('shots_in_card','false');
 		Lampa.Storage.set('shots_in_player','false');
 		Lampa.Storage.set('screensaver','false');
@@ -91,7 +87,7 @@
         var plugins = Lampa.Plugins.get();
 
         var plugins_add = [
-			{"url": "plugins/kinopoisk.js","status": 1,"name": "KP","author": "lampac"},{"url": "plugins/kp_source.js","status": 1,"name": "kp_source.js","author": "lampac"},{"url": "https://lam.maxvol.pro/tmdbproxy.js","status": 1,"name": "TMDB Proxy","author": "lampac"},{"url": "https://lam.maxvol.pro/online.js","status": 1,"name": "Онлайн","author": "lampac"},{"url": "plugins/pubtorr.js","status": 1,"name": "ts","author": "lampac"},{"url": "plugins/infuse.js","status": 1,"name": "infuce","author": "lampac"},{"url": "https://lam.maxvol.pro/startpage.js","status": 1,"name": "start","author": "lampac"}
+			{"url": "plugins/kinopoisk.js","status": 1,"name": "KP","author": "lampac"},{"url": "plugins/kp_source.js","status": 1,"name": "kp_source.js","author": "lampac"},{"url": "https://lam.maxvol.pro/tmdbproxy.js","status": 1,"name": "TMDB Proxy","author": "lampac"},{"url": "https://lam.maxvol.pro/cubproxy.js","status": 1,"name": "CUB Proxy","author": "lampac"},{"url": "https://lam.maxvol.pro/online.js","status": 1,"name": "Онлайн","author": "lampac"},{"url": "plugins/microphone.js","status": 1,"name": "microphone","author": "lampac"},{"url": "plugins/infuse.js","status": 1,"name": "infuce","author": "lampac"},{"url": "https://lam.maxvol.pro/startpage.js","status": 1,"name": "start","author": "lampac"}
         ];
 
         var plugins_push = []
