@@ -36,6 +36,8 @@
 		Lampa.Storage.set('parse_in_search','true');
 		Lampa.Storage.set('menu_sort','["Главная","Фильмы","Мультфильмы","Сериалы","Каталог","Фильтр","Релизы","Аниме","Избранное","История","Торренты","Кинопоиск"]');
 		Lampa.Storage.set('menu_hide','["Лента","Персоны","Расписание","Shots","Подписки","Спорт"]');
+		Lampa.Storage.set('protocol','http');
+		Lampa.Storage.set('parse_lang','lg_df_year');
         	/*Удаляем ненужное из главного меню*/
 
   Lampa.Listener.follow('app', function (e) {
