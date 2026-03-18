@@ -3,7 +3,7 @@
   "short_name": "Дудочник®️",
   "description": "PWA apps от нашего сайта для просмотра фильмов и сериалов",
   "lang": "ru",
-  "start_url": "/lampa/index.htm",
+  "start_url": "/lampa/",
   "scope": "/",
   "display": "fullscreen",
   "theme_color": "#000000",
