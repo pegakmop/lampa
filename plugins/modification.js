@@ -97,7 +97,7 @@
         var plugins = Lampa.Plugins.get();
 
         var plugins_add = [
-			{"url": "plugins/kinopoisk.js","status": 1,"name": "KP","author": "lampac"},{"url": "plugins/kp_source.js","status": 1,"name": "kp_source.js","author": "lampac"},{"url": "https://lam.maxvol.pro/tmdbproxy.js","status": 1,"name": "TMDB Proxy","author": "lampac"},{"url": "https://lam.maxvol.pro/cubproxy.js","status": 1,"name": "CUB Proxy","author": "lampac"},{"url": "https://lam.maxvol.pro/online.js","status": 1,"name": "Онлайн","author": "lampac"},{"url": "plugins/microphone.js","status": 1,"name": "microphone","author": "lampac"},{"url": "plugins/infuse.js","status": 1,"name": "infuse","author": "lampac"},{"url": "plugins/cors.js","status": 1,"name": "cors","author": "lampac"}
+			{"url": "plugins/kinopoisk.js","status": 1,"name": "KP","author": "lampac"},{"url": "plugins/kp_source.js","status": 1,"name": "kp_source.js","author": "lampac"},{"url": "https://lam.maxvol.pro/tmdbproxy.js","status": 1,"name": "TMDB Proxy","author": "lampac"},{"url": "https://lam.maxvol.pro/cubproxy.js","status": 1,"name": "CUB Proxy","author": "lampac"},{"url": "https://lam.maxvol.pro/online.js","status": 1,"name": "Онлайн","author": "lampac"},{"url": "plugins/microphone.js","status": 1,"name": "microphone","author": "lampac"},{"url": "plugins/infuse.js","status": 1,"name": "infuse","author": "lampac"},{"url": "plugins/vlc-infuse.js","status": 1,"name": "InfuseVlcSaver","author": "lampac"}
         ];
 
         var plugins_push = []
