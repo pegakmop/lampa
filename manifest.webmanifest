@@ -1,0 +1,47 @@
+{
+  "name": "Пегий Дудочник®️ от @Piper_Pied",
+  "short_name": "Дудочник®️",
+  "description": "PWA apps от нашего сайта для просмотра фильмов и сериалов",
+  "lang": "ru",
+  "start_url": "/lampa/index.htm",
+  "scope": "/",
+  "display": "fullscreen",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "dir": "ltr",
+  "orientation": "any",
+  "permissions": [
+    "microphone",
+    "push",
+    "notifications",
+    "geolocation",
+    "camera",
+    "clipboard-read",
+    "clipboard-write",
+    "midi",
+    "ambient-light-sensor",
+    "accelerometer",
+    "gyroscope",
+    "magnetometer"
+  ],
+  "icons": [
+    {
+      "src": "/192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/180x180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
