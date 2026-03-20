@@ -165,6 +165,20 @@
             loadCurrentLampa()
         }
     </script>
-
+<!-- iOS PiP Fix -->
+<script>
+(function(){
+    var _createElement = document.createElement.bind(document);
+    document.createElement = function(tag) {
+        var el = _createElement(tag);
+        if(tag.toLowerCase() === 'video') {
+            el.setAttribute('playsinline', '');
+            el.setAttribute('webkit-playsinline', '');
+            el.setAttribute('x-webkit-airplay', 'allow');
+        }
+        return el;
+    };
+})();
+</script>
 </body>
 </html>
