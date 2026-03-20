@@ -32,21 +32,56 @@
     <link rel="stylesheet" href="css/app.css?v=4.56">
 </head>
 <body style="background: #1d1f20;">
-    <!-- iOS PiP Fix - МАКСИМАЛЬНО РАНО -->
 <script>
-// Перехватываем createElement ДО загрузки app.min.js
-var _orig = document.createElement.bind(document);
-document.createElement = function(tag) {
-    var el = _orig(tag);
-    if (tag.toLowerCase() === 'video') {
-        el.setAttribute('playsinline', '');
-        el.setAttribute('webkit-playsinline', '');
-        el.setAttribute('x-webkit-airplay', 'allow');
-        el.setAttribute('webkit-allows-inline-media-playback', '');
+(function(){
+    function initPiP(){
+        var app = document.getElementById('app');
+        if(!app) return;
+
+        new MutationObserver(function(){
+            var video = document.querySelector('video');
+            if(video && !video._pipInit){
+                video._pipInit = true;
+
+                var btn = document.createElement('button');
+                btn.innerHTML = '⧉';
+                btn.style.cssText = 'position:fixed;bottom:80px;right:20px;z-index:999999;background:rgba(0,0,0,0.7);color:#fff;border:none;border-radius:10px;padding:10px 14px;font-size:22px;cursor:pointer;';
+                document.body.appendChild(btn);
+
+                btn.addEventListener('click', function(){
+                    var v = document.querySelector('video');
+                    if(!v) return;
+
+                    // MediaSession для экрана блокировки
+                    if('mediaSession' in navigator){
+                        navigator.mediaSession.metadata = new MediaMetadata({
+                            title: v.getAttribute('stay-title') || 'Lampa',
+                            artist: 'Пегий Дудочник'
+                        });
+                        navigator.mediaSession.setActionHandler('play', function(){ v.play(); });
+                        navigator.mediaSession.setActionHandler('pause', function(){ v.pause(); });
+                    }
+
+                    // PiP
+                    if(v.webkitSupportsPresentationMode && v.webkitSupportsPresentationMode('picture-in-picture')){
+                        v.webkitSetPresentationMode('picture-in-picture');
+                    } else if(document.pictureInPictureEnabled){
+                        v.requestPictureInPicture().catch(function(){});
+                    }
+                });
+            }
+        }).observe(app, {childList:true, subtree:true});
     }
-    return el;
-};
+
+    var wall = document.getElementById('auth-wall');
+    if(!wall){ initPiP(); return; }
+
+    new MutationObserver(function(){
+        if(wall.classList.contains('auth-hide')) setTimeout(initPiP, 600);
+    }).observe(wall, {attributes:true, attributeFilter:['class']});
+})();
 </script>
+
 
     <script>
         window.youtube_lazy_load = true
@@ -181,47 +216,6 @@ document.createElement = function(tag) {
             loadCurrentLampa()
         }
     </script>
-<!-- PiP webkit -->
-<script>
-(function(){
-    function initPiP(){
-        var app = document.getElementById('app');
-        if(!app) return;
-
-        new MutationObserver(function(){
-            var video = document.querySelector('video');
-            if(video && !video._pipInit){
-                video._pipInit = true;
-
-                var btn = document.createElement('button');
-                btn.innerHTML = '⧉';
-                btn.style.cssText = 'position:fixed;bottom:80px;right:20px;z-index:999999;background:rgba(0,0,0,0.7);color:#fff;border:none;border-radius:10px;padding:10px 14px;font-size:22px;cursor:pointer;';
-                document.body.appendChild(btn);
-
-                btn.addEventListener('click', function(){
-                    var v = document.querySelector('video');
-                    if(!v){ alert('video not found'); return; }
-
-                    alert('webkitSupports: ' + v.webkitSupportsPresentationMode('picture-in-picture') + '\npictureInPictureEnabled: ' + document.pictureInPictureEnabled + '\nstandalone: ' + window.navigator.standalone);
-
-                    if(v.webkitSupportsPresentationMode && v.webkitSupportsPresentationMode('picture-in-picture')){
-                        v.webkitSetPresentationMode('picture-in-picture');
-                    } else if(document.pictureInPictureEnabled){
-                        v.requestPictureInPicture();
-                    }
-                });
-            }
-        }).observe(app, {childList:true, subtree:true});
-    }
-
-    var wall = document.getElementById('auth-wall');
-    if(!wall){ initPiP(); return; }
-
-    new MutationObserver(function(){
-        if(wall.classList.contains('auth-hide')) setTimeout(initPiP, 600);
-    }).observe(wall, {attributes:true, attributeFilter:['class']});
-})();
-</script>
 
 </body>
 </html>
