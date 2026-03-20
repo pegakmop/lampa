@@ -6,7 +6,6 @@
   "start_url": "/lampa/index.htm",
   "scope": "/",
   "display": "fullscreen",
-  "display_override": ["fullscreen", "standalone"],
   "theme_color": "#000000",
   "background_color": "#000000",
   "dir": "ltr",
