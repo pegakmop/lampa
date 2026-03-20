@@ -181,5 +181,45 @@ document.createElement = function(tag) {
             loadCurrentLampa()
         }
     </script>
+    <!-- PiP webkit -->
+<script>
+(function(){
+    function initPiP(){
+        var app = document.getElementById('app');
+        if(!app) return;
+
+        new MutationObserver(function(){
+            var video = document.querySelector('video');
+            if(video && !video._pipInit){
+                video._pipInit = true;
+
+                // Создаём кнопку
+                var btn = document.createElement('button');
+                btn.innerHTML = '⧉';
+                btn.style.cssText = 'position:fixed;bottom:80px;right:20px;z-index:999999;background:rgba(0,0,0,0.7);color:#fff;border:none;border-radius:10px;padding:10px 14px;font-size:22px;cursor:pointer;';
+                document.body.appendChild(btn);
+
+                btn.addEventListener('click', function(){
+                    var v = document.querySelector('video');
+                    if(!v) return;
+                    if(v.webkitSupportsPresentationMode && v.webkitSupportsPresentationMode('picture-in-picture')){
+                        v.webkitSetPresentationMode('picture-in-picture');
+                    } else if(document.pictureInPictureEnabled){
+                        v.requestPictureInPicture();
+                    }
+                });
+            }
+        }).observe(app, {childList:true, subtree:true});
+    }
+
+    var wall = document.getElementById('auth-wall');
+    if(!wall){ initPiP(); return; }
+
+    new MutationObserver(function(){
+        if(wall.classList.contains('auth-hide')) setTimeout(initPiP, 600);
+    }).observe(wall, {attributes:true, attributeFilter:['class']});
+})();
+</script>
+
 </body>
 </html>
