@@ -70,8 +70,8 @@ document.createElement = function(tag) {
 
                     if('mediaSession' in navigator){
                         navigator.mediaSession.metadata = new MediaMetadata({
-                            title: v.getAttribute('stay-title') || 'Lampa',
-                            artist: 'Пегий Дудочник'
+                            title: v.getAttribute('stay-title') || 'Пегий Дудочник',
+                            artist: (document.querySelector('.head-backward__title') && document.querySelector('.head-backward__title').textContent.trim()) || ''
                         });
                         navigator.mediaSession.setActionHandler('play', function(){ v.play(); });
                         navigator.mediaSession.setActionHandler('pause', function(){ v.pause(); });
