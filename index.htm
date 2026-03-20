@@ -32,6 +32,24 @@
     <link rel="stylesheet" href="css/app.css?v=4.56">
 </head>
 <body style="background: #1d1f20;">
+
+<!-- iOS Fix -->
+<script>
+var _orig = document.createElement.bind(document);
+document.createElement = function(tag) {
+    var el = _orig(tag);
+    if (tag.toLowerCase() === 'video') {
+        el.setAttribute('playsinline', '');
+        el.setAttribute('webkit-playsinline', '');
+        el.setAttribute('x-webkit-airplay', 'allow');
+        el.setAttribute('webkit-allows-inline-media-playback', '');
+    }
+    return el;
+};
+</script>
+
+<!-- PiP webkit -->
+
 <script>
 (function(){
     function initPiP(){
