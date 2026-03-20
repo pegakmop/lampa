@@ -48,8 +48,6 @@ document.createElement = function(tag) {
 };
 </script>
 
-<!-- PiP webkit -->
-
 <script>
 (function(){
     function initPiP(){
@@ -70,7 +68,6 @@ document.createElement = function(tag) {
                     var v = document.querySelector('video');
                     if(!v) return;
 
-                    // MediaSession для экрана блокировки
                     if('mediaSession' in navigator){
                         navigator.mediaSession.metadata = new MediaMetadata({
                             title: v.getAttribute('stay-title') || 'Lampa',
@@ -80,7 +77,6 @@ document.createElement = function(tag) {
                         navigator.mediaSession.setActionHandler('pause', function(){ v.pause(); });
                     }
 
-                    // PiP
                     if(v.webkitSupportsPresentationMode && v.webkitSupportsPresentationMode('picture-in-picture')){
                         v.webkitSetPresentationMode('picture-in-picture');
                     } else if(document.pictureInPictureEnabled){
@@ -91,14 +87,16 @@ document.createElement = function(tag) {
         }).observe(app, {childList:true, subtree:true});
     }
 
-    var wall = document.getElementById('auth-wall');
-    if(!wall){ initPiP(); return; }
-
-    new MutationObserver(function(){
-        if(wall.classList.contains('auth-hide')) setTimeout(initPiP, 600);
-    }).observe(wall, {attributes:true, attributeFilter:['class']});
+    // Ждём загрузки DOM
+    if(document.readyState === 'loading'){
+        document.addEventListener('DOMContentLoaded', initPiP);
+    } else {
+        initPiP();
+    }
 })();
 </script>
+
+<!-- PiP webkit -->
 
 
     <script>
