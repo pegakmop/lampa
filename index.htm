@@ -76,9 +76,17 @@ document.createElement = function(tag) {
                     }
 
                     if(v.webkitSupportsPresentationMode && v.webkitSupportsPresentationMode('picture-in-picture')){
-                        v.webkitSetPresentationMode('picture-in-picture');
+                        if(v.webkitPresentationMode === 'picture-in-picture'){
+                            v.webkitSetPresentationMode('inline');
+                        } else {
+                            v.webkitSetPresentationMode('picture-in-picture');
+                        }
                     } else if(document.pictureInPictureEnabled){
-                        v.requestPictureInPicture().catch(function(){});
+                        if(document.pictureInPictureElement){
+                            document.exitPictureInPicture().catch(function(){});
+                        } else {
+                            v.requestPictureInPicture().catch(function(){});
+                        }
                     }
                 });
             }
