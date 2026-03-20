@@ -5,7 +5,7 @@
   "lang": "ru",
   "start_url": "/lampa/index.htm",
   "scope": "/",
-  "display": "standalone",
+  "display": "fullscreen",
   "theme_color": "#000000",
   "background_color": "#000000",
   "dir": "ltr",
