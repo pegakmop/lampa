@@ -57,6 +57,16 @@ document.createElement = function(tag) {
             if(video && !video._pipInit){
                 video._pipInit = true;
 
+                // Автоматически при появлении видео
+                if('mediaSession' in navigator){
+                    navigator.mediaSession.metadata = new MediaMetadata({
+                        title: 'Пегий Дудочник',
+                        artist: (document.querySelector('.head-backward__title') && document.querySelector('.head-backward__title').textContent.trim()) || ''
+                    });
+                    navigator.mediaSession.setActionHandler('play', function(){ document.querySelector('video') && document.querySelector('video').play(); });
+                    navigator.mediaSession.setActionHandler('pause', function(){ document.querySelector('video') && document.querySelector('video').pause(); });
+                }
+
                 var btn = document.createElement('button');
                 btn.innerHTML = '⧉';
                 btn.style.cssText = 'position:fixed;bottom:80px;right:20px;z-index:999999;background:rgba(0,0,0,0.7);color:#fff;border:none;border-radius:10px;padding:10px 14px;font-size:22px;cursor:pointer;';
@@ -66,13 +76,12 @@ document.createElement = function(tag) {
                     var v = document.querySelector('video');
                     if(!v) return;
 
+                    // При нажатии кнопки меняем title
                     if('mediaSession' in navigator){
                         navigator.mediaSession.metadata = new MediaMetadata({
                             title: 'фоновое воспроизведение',
                             artist: (document.querySelector('.head-backward__title') && document.querySelector('.head-backward__title').textContent.trim()) || ''
                         });
-                        navigator.mediaSession.setActionHandler('play', function(){ v.play(); });
-                        navigator.mediaSession.setActionHandler('pause', function(){ v.pause(); });
                     }
 
                     if(v.webkitSupportsPresentationMode && v.webkitSupportsPresentationMode('picture-in-picture')){
