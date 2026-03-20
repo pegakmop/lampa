@@ -21,6 +21,8 @@
 <meta name="msapplication-TileColor" content="#1d1f20">
 <meta name="msapplication-config" content="icons/browserconfig.xml">
 <meta name="theme-color" content="#1d1f20">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="referrer" content="never">
 
@@ -355,119 +357,5 @@
     [regLogin,regPass,regPass2].forEach(function(el){ el.addEventListener('keydown',function(e){ if(e.key==='Enter') handleRegister(); }); });
 })();
 </script>
-<!-- PiP (Picture-in-Picture) -->
-<script>
-(function(){
-    var pipBtn;
-
-    function createPipBtn(){
-        if(document.getElementById('pip-btn')) return;
-        pipBtn = document.createElement('button');
-        pipBtn.id = 'pip-btn';
-        pipBtn.innerHTML = '⧉';
-        pipBtn.title = 'Картинка в картинке';
-        pipBtn.style.cssText = [
-            'position:fixed',
-            'bottom:80px',
-            'right:20px',
-            'z-index:999998',
-            'background:rgba(0,0,0,0.75)',
-            'color:#fff',
-            'border:none',
-            'border-radius:10px',
-            'padding:10px 14px',
-            'font-size:22px',
-            'cursor:pointer',
-            'display:none',
-            'backdrop-filter:blur(6px)',
-            '-webkit-backdrop-filter:blur(6px)',
-            'box-shadow:0 4px 20px rgba(0,0,0,0.5)',
-            'transition:opacity 0.3s'
-        ].join(';');
-        document.body.appendChild(pipBtn);
-
-        pipBtn.addEventListener('click', function(){
-            var video = document.querySelector('video');
-            if(!video) return;
-            if(document.pictureInPictureElement){
-                document.exitPictureInPicture().catch(function(){});
-            } else if(document.pictureInPictureEnabled){
-                video.requestPictureInPicture().catch(function(e){
-                    console.warn('PiP:', e);
-                });
-            }
-        });
-    }
-
-    function watchVideo(){
-        // Следим за появлением <video> в #app
-        var app = document.getElementById('app');
-        if(!app) return;
-
-        var checkVideo = function(){
-            var video = document.querySelector('video');
-            if(video && document.pictureInPictureEnabled){
-                if(pipBtn) pipBtn.style.display = 'block';
-
-                // Авто-PiP при сворачивании
-                if(!video._pipListened){
-                    video._pipListened = true;
-                    document.addEventListener('visibilitychange', function(){
-                        var v = document.querySelector('video');
-                        if(!v) return;
-                        if(document.visibilityState === 'hidden' && !document.pictureInPictureElement && !v.paused){
-                            v.requestPictureInPicture().catch(function(){});
-                        }
-                        if(document.visibilityState === 'visible' && document.pictureInPictureElement){
-                            document.exitPictureInPicture().catch(function(){});
-                        }
-                    });
-                }
-            } else {
-                if(pipBtn) pipBtn.style.display = 'none';
-            }
-        };
-
-        var observer = new MutationObserver(checkVideo);
-        observer.observe(app, { childList:true, subtree:true });
-        setInterval(checkVideo, 2000); // дополнительная проверка каждые 2 сек
-    }
-
-    function init(){
-        createPipBtn();
-        watchVideo();
-    }
-
-    // Ждём скрытия auth-wall, потом инициализируем
-    var authWall = document.getElementById('auth-wall');
-    if(!authWall){
-        init();
-        return;
-    }
-
-    var mo = new MutationObserver(function(mutations){
-        mutations.forEach(function(m){
-            m.removedNodes.forEach(function(node){
-                if(node.id === 'auth-wall'){
-                    mo.disconnect();
-                    init();
-                }
-            });
-        });
-    });
-    mo.observe(document.body, { childList:true });
-
-    // Запасной вариант — если auth-wall скрывается через класс
-    var classObserver = new MutationObserver(function(){
-        if(authWall.classList.contains('auth-hide')){
-            classObserver.disconnect();
-            setTimeout(init, 600);
-        }
-    });
-    classObserver.observe(authWall, { attributes:true, attributeFilter:['class'] });
-
-})();
-</script>
-
 </body>
 </html>
